@@ -13,39 +13,63 @@
 <body>
     <div class="container">
     <div class="row">
-    <div class="col-4 offset-4">
+    <div class="col-4">
     <form method="POST" >
  
  <select multiple class="form-control" name="ciudad" id="">
-   <option value="2510911">Sevilla</option>
+   <option value="6361046">Sevilla</option>
    <option value="6359304">Madrid</option>
-   <option value="2673730">Barcelona</option>
+   <option value="6356055">Barcelona</option>
     </select>
     <input type="submit" name="enviar" class="btn btn-primary" value ="Enviar"/>
     
     </form>
     </div>
 
-     </div>
   <?php 
     include('controller.php');
     include('functions.php');
     if($var){?>
+      <div class="col-5"> 
+      Fecha:<?php echo date("jS F, Y", $currentTime); ?>
+      Ciudad:<?php echo $data->city->name; ?>
+
+
+      <table>
+     <table class="table stripped justify-center">
+     <thead class="thead-dark">
+    <tr>
+      <th>Máx</th>
+      <th>Min</th>
+      <th>Temp Actual</th>
+      <th>Sensación térmica</th>
+      <th>Viento</th>
+      <th>Tiempo</th>    
+    </tr>
+
+    <tr>
+      <td><?php echo round($data->list[0]->main->temp_max)."ºC" ?></td>
+      <td><?php echo round($data->list[0]->main->temp_min)."ºC" ?></td>
+      <td><?php echo round($data->list[0]->main->temp)."ºC" ?></td>
+      <td><?php echo round($data->list[0]->main->feels_like)."ºC" ?></td>
+      <td><?php echo $data->list[0]->wind->speed ?></td>
+      <td><?php echo $data->list[0]->weather[0]->main ?></td>
+
+      
+    </tr>
+
+      </table>
+      
+      </div>
     <div class="row">
-    <div class="col-6">
-    Fecha:<?php echo date("jS F, Y", $currentTime); ?>
-    </div>
-    <div class="col-6">
-    Ciudad:<?php echo $data->city->name; ?>
-    </div>
+      <div class="col-12">
      <table class="table stripped">
        <thead class="thead-dark">
          <tr>
          <th>Hora</th>  
-
-           <th>Humedad</th>
-           <th>Temperatura</th>
-           <th>Viento</th>
+         <th>Temperatura</th>
+         <th>Humedad</th>
+         <th>Viento</th>
 
          </tr>
        </thead>
@@ -56,17 +80,18 @@
          <tr>
          <td scope="row"><?php echo explode(" ",$list->dt_txt)[1]?></td>
            <td >
-            <?php echo FarToDeg($list->main->temp); ?>°C</td>
+            <?php echo round($list->main->temp); ?>°C</td>
            <td><?php echo $list->main->humidity; ?> %</td>
            <td><?php echo $list->wind->speed; ?> km/h</td>
          </tr>
-       <?php }?>
+       <?php }}?>
        </tbody>
      </table>
-    
-    
+    </div>
+     </div>
+
 </div>
-<?php } ?>
+
 </div>
  
 </body>

@@ -12,11 +12,11 @@
 
 </div>
 <div class="weather-forecast">
-    <?php echo $data->list[0]->main->temp; ?>°F
+    <?php echo $data->list[0]->main->temp; ?>°C
     
 </div>
 <div class="time">
-    <div>Humidity: <?php echo $data->list[0]->main->humidity; ?> %</div>
+    <div>Humidity: <?php echo -$data->list[0]->main->temp_max; ?> %%</div>
     <div>Wind: <?php echo $data->list[0]->wind->speed; ?> km/h</div>
 </div>
 </div>

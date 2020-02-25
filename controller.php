@@ -5,7 +5,7 @@ $cityId = $_POST['ciudad'];
      $var = true;
  }
 
-$googleApiUrl = 'http://api.openweathermap.org/data/2.5/forecast?id='.$cityId.'&APPID='.$apiKey.'';
+$googleApiUrl = 'http://api.openweathermap.org/data/2.5/forecast?id='.$cityId.'&units=metric&APPID='.$apiKey.'';
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_HEADER, 0);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
